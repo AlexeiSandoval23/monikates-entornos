@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monikates Entornos - Resultado</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Monikates Entornos</h1>
+    <div id="resultado"></div>
+    <button id="copyButton">Copiar Texto</button>
+    <button id="sendButton">Enviar a Discord</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sujetos = localStorage.getItem('sujetos');
+            const vehiculos = JSON.parse(localStorage.getItem('vehiculos'));
+            const color = localStorage.getItem('color');
+            const entorno = localStorage.getItem('entorno');
+            const calibre = localStorage.getItem('calibre');
+            const rehenes = localStorage.getItem('rehenes');
+            const snipers = localStorage.getItem('snipers');
+            const sujetosExterior = localStorage.getItem('sujetosExterior');
+            const sujetosMedio = localStorage.getItem('sujetosMedio');
+            const sujetosAlto = localStorage.getItem('sujetosAlto');
+
+            const texts = {
+                "robo-ammunation": `
+                
+                <p>**ROBO AMMU**</p>
+
+                <p>Hola soy Manolito y acabo de ver como ${sujetos} sujetos vestidos con prendas ${color}, llegan al AMMUNATION terrible matón en ${vehiculos.join(', ')}, mostrando ${calibre.toUpperCase()} CALIBRE al momento de bajarse, TENDRÍAN A ${rehenes} Rehenes. ESTOS WEONES SE ESTÁN ROBANDO TODAS LAS COSAS DE LA TIENDA, ¡PORFAVOOOOR VENGAN !!!!</p>
+                
+                <p>**PELEAR AMMU** </p>
+                
+                <p>entorno Hola soy Juan Perez y acabo de ver a ${sujetos} sujetos vestidos con prendas ${color} llegando en ${vehiculos.join(', ')},abriendo fuego hacia dentro de un ammunation, por lo que logro apreciar ESTÁN CON ${calibre.toUpperCase()} CALIBRE!!</p>
+                
+                <p>**DEFENDER AMMU**</p>
+
+                <p>entorno Hola soy Maicol y acabo de ver como ${sujetos} sujetos CON vestimenta ${color} le abre fuego a sujetos que quieren entrar de mala forma al establecimiento (AMMUNATION, al parecer los sujetos portan armamento de ${calibre.toUpperCase()} calibre. ayudaaa </p>
+
+                <p>**DESHABILITAR PACOS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irian con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}</p>
+
+                <p>**SECUESTRAR CIVILES **</p>
+
+                <p>entorno Alo policia? Acabo de ver a ${sujetos} personas con VESTIMENTA ${color}, SECUESTRANDO a CIVILES en ${vehiculos.join(', ')}. Los secuestradores portarían armamento de ${calibre.toUpperCase()} CALIBRE y se ven muy pegrilosos, ESTARÍAN DISPUESTO A DESHABILITAR LAS RUEDAS AYUDAA POR FAVOR</p>
+
+                @here
+                `,
+                "robo-joyeria": `
+                <p>**ROBO JOYERIA**</p>
+
+                <p>Hola soy Juan Perez encargada de las camaras de seguridad de la JOYERIA, estoy viendo como ${sujetos} sujetos vestidos CON VESTIMENTA ${color} estarian robando la joyeria y se les escucho decir que algunos sujetos con las mismas vestimentas estarian escondidos por algun lugar, aparte habrían llegado con ${rehenes} REHENES, estos se movilizarian en ${vehiculos.join(', ')}, al parecer tendrian armas de ${calibre.toUpperCase()} CALIBRE, ayuda urgente!</p>
+
+                <p>**PELEAR JOYERIA**</p>
+
+                <p>entorno Hola soy Juan Perez encargada de las camaras de seguridad de la JOYERIA, estoy viendo como ${sujetos} sujetos vestidos de VESTIMENTA ${color} llegarian en ${vehiculos.join(', ')}, se bajarían de ellas a pelear la JOYERIA, estos estarian todos armados con ${calibre.toUpperCase()} CALIBRE, ayuda urgente</p>
+
+                <p>**DEFENDER JOYERIA**</p>
+
+                <p>entorno Hola soy la Juan Perez encargada de las camaras de seguridad de la JOYERIA, estoy viendo como unos enmascarados llegarian a abrir fuego a ${sujetos} sujetos vestidos con VESTIMENTA ${color}, los cuales tendrian afuera ${vehiculos.join(', ')}, estarian armados con ${calibre.toUpperCase()} CALIBRE, ayuda urgente</p>
+                <p>**SECUESTRAR CIVIL**</p>
+
+                <p>entorno Alo pacos? Acabo de ver a ${sujetos} personas con VESTIMENTA ${color} SECUESTRANDO a CIVILES en ${vehiculos.join(', ')}. Los secuestradores portarían armamento de ${calibre.toUpperCase()} CALIBRE y se ven muy pegrilosos, ESTARÍAN DISPUESTOS A DESHABILITAR LAS RUEDAS AYUDAA POR FAVOR</p>
+
+                <p>**DESHABILITAR PACOS**</p>
+
+                <p>entorno Aloo pacos? SOY Juan Perez sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIRLOS, irian con VESTIMENTA ${color} y con armas de ${calibre.toUpperCase()} CALIBRE los vi moverse en ${vehiculos.join(', ')}</p>
+
+                <p>**ABATIR CIVIL**</p>
+
+                <p>entorno Aloo pacos? soy Juan Perez sabe que acabo de ver a ${sujetos} sujetos disparando a abatir a los civiles, irian con VESTIMENTA ${color} y con armas de ${calibre.toUpperCase()} CALIBRE, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR SON MUY PELIGROSOS</p>
+                @here
+            `,
+                "robo-polleria": `
+                <p>**PELEAR POLLERIA CIVILES**</p>
+
+                <p>Hola soy Dieginho Dosantos y acabo de ver a 4 sujetos Vestido con prendas ${color} llegando en ${vehiculos.join(', ')} TODO PIKAO A XORO abriendo fuego hacia dentro de una POLLERIA, por lo que logro apreciar ESTÁ CON ${calibre.toUpperCase()} CALIBRE!!</p>
+
+                <p>**DEFENDER POLLERIA**</p>
+
+                <p>entorno Hola soy Maicol y acabo de ver como 4 sujetos CON vestimenta ${color} le abre fuego a sujetos que quieren entrar de mala forma a la POLLERIA al parecer los sujetos portan armamento de ${calibre.toUpperCase()} calibre. ayudaaa</p>
+
+                <p>**SECUESTRAR**</p>
+
+                <p>entorno Alo polizia?! Soy Don Pipe y Acabo de ver como 4 sujetos Vestidos con prendas ${color} con ${calibre.toUpperCase()} calibre, en ${vehiculos.join(', ')} TODO PIKAO A XORO QUIEREN SECUESTRAR a los civiles A LO MATÓN!! ESTARÍAN DISPUESTOS A PINCHAR RUEDAS SI ES NECESARIO, Ayuda por favor, salven a los Rehenes!!</p>
+
+                <p>**ABATIR CIVILES**</p>
+
+                <p>entorno Aloo sabe que acabo de ver a 4 sujetos Vestidos con prendas ${color} ABATIENDO CIVILES, estarían con ${calibre.toUpperCase()} calibre y se moviliza en ${vehiculos.join(', ')} TODO PIKAO A XORO vengan porfavor vengan!!!!</p>
+                
+                <p>**ROBO POLLERIA**</p>
+
+                <p>entorno Hola buenas soy Manolito y acabo de ver como 4 sujetos Vestidos con prendas ${color} llegan a la POLLERIA terrible matón en ${vehiculos.join(', ')} TODO PIKAO A XORO, mostrando ${calibre.toUpperCase()} CALIBRE al momento de bajarse, TENDRÍA A ${rehenes} PELAO SECUESTRAO, ESTOS WEONES SE ESTA ROBANDO TODAS LAS COSAS DE LA TIENDA, PORFAVOOOOR VENGAN!!!!</p>
+
+                <p>**DESHABILITAR PACOS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a 4 sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irian con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')} TODO PIKAO A XORO AYUDA POR FAVOOOR</p>
+                @here
+        `,
+                "quimicos": `
+                <p>**ABATIR CIVILES**</p>
+
+                <p>entorno Aloo carabibuenos??? soy Amanda Kayne sabe que acabo de ver a 3 sujetos disparando a abatir a los civiles, irían con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOOR ES MUY PELIGROSOS!</p>
+
+                <p>**DESHABILITAR Y ABATIR CARABINEROS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a 3 sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irían con prendas ${color}, estarían con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOOOR</p>
+
+                <p>**ROBAR LAS PERTENENCIAS DE LOS SUJETOS EN EL PUNTO**</p>
+
+                <p>entorno Hola oficiales soy Felipe Camiroaga, al parecer 3 sujetos vestidos con prendas ${color} han logrado abatir a dichos SUJETOS y ahora revisa sus pertenencias con intenciones de robar, portan armamento de ${calibre.toUpperCase()} calibre estarían preparado para escapar/tirotearse con ${vehiculos.join(', ')}.</p>
+
+                <p>**RECOLECCION QUIMICOS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver 2 de 3 sujetos SACANDO sustancias ilícitas, 1 ESTARÍA ESCONDIDO ESTRATEGICAMENTE. irían con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOR ME TOY PONIENDO NERVIOSOOOOO. @here</p>
+
+                <p>**ROBAR LAS PERTENENCIAS DE CARABINEROS/PDI EN EL PUNTO**</p>
+
+                <p>entorno Hola oficiales?¡ soy Amanda Kayne, al parecer 3 SUJETOS DE ${color}, han logrado abatir a OFICIALES DE LA LEY, ahora revisan sus pertenencias con intenciones de robar, portan armamento de ${calibre.toUpperCase()} calibre y estarían preparados para escapar en ${vehiculos.join(', ')}.</p>
+        `,  
+                "secuestro": `
+                <p>**SECUESTRAR**</p>
+
+                <p>entorno Alo polizia?! Soy Don Pipe y Acabo de ver como ${sujetos} sujetos Vestidos con prendas ${color} con ${calibre.toUpperCase()} calibre, en ${vehiculos.join(', ')} TODO PIKAO A XORO QUIEREN SECUESTRAR a los civiles A LO MATÓN!! ESTARÍAN DISPUESTOS A PINCHAR RUEDAS SI ES NECESARIO, Ayuda por favor, salven a los Rehenes!!</p>
+
+                <p>**ABATIR CIVILES**</p>
+
+                <p>entorno Aloo sabe que acabo de ver a ${sujetos} sujetos Vestidos con prendas ${color} ABATIENDO CIVILES, estarían con ${calibre.toUpperCase()} calibre y se moviliza en ${vehiculos.join(', ')} TODO PIKAO A XORO vengan porfavor vengan!!!!</p>
+
+                <p>**DESHABILITAR PACOS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irian con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')} TODO PIKAO A XORO AYUDA POR FAVOOOR</p>
+            `,
+            "venta": `
+                <p>**VENTA**</p>
+
+                <p>Aloo carabibuenos??? sabe que acabo de ver a ${sujetos} sujetos vendiendo sustancias ilícitas, irían con PRENDAS COLOR ${color} y con armas de ${calibre.toUpperCase()} CALIBRE, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOR ME TOY PONIENDO NERVIOSOOOOO!</p>
+
+                <p>**ABATIR CIVILES**</p>
+
+                <p>entorno Aloo carabibuenos??? soy Amanda Kayne sabe que acabo de ver a ${sujetos} sujetos disparando a abatir a los civiles, irían con prendas COLOR ${color} y con armas de ${calibre.toUpperCase()} CALIBRE, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR SON MUY PELIGROSOS!</p>
+
+                <p>**DESHABILITAR Y ABATIR CARABINEROS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irían con prendas COLOR ${color} y con armas de ${calibre.toUpperCase()} CALIBRE, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOOR!</p>
+            `,
+            "robo-carniceria": `
+                <p>**PELEAR CARNE CIVILES**</p>
+
+                <p>entorno Hola soy Dieginho Dosantos y acabo de ver a ${sujetos} sujetos Vestido con prendas ${color} llegando en ${vehiculos.join(', ')} TODO PIKAO A XORO abriendo fuego hacia dentro de una CARNICERIA, por lo que logro apreciar ESTÁ CON ${calibre.toUpperCase()} CALIBRE!!</p>
+
+                <p>**DEFENDER CARNE**</p>
+
+                <p>entorno Hola soy Maicol y acabo de ver como ${sujetos} sujetos CON vestimenta ${color} le abre fuego a sujetos que quieren entrar de mala forma a la CARNICERIA al parecer los sujetos portan armamento de ${calibre.toUpperCase()} calibre. ayudaaa</p>
+
+                <p>**SECUESTRAR**</p>
+
+                <p>entorno Alo polizia?! Soy Don Pipe y Acabo de ver como ${sujetos} sujetos Vestidos con prendas ${color} con ${calibre.toUpperCase()} calibre, en ${vehiculos.join(', ')} TODO PIKAO A XORO QUIEREN SECUESTRAR a los civiles A LO MATÓN!! ESTARÍAN DISPUESTOS A PINCHAR RUEDAS SI ES NECESARIO, Ayuda por favor, salven a los Rehenes!!</p>
+
+                <p>**ABATIR CIVILES**</p>
+
+                <p>entorno Aloo sabe que acabo de ver a ${sujetos} sujetos Vestidos con prendas ${color} ABATIENDO CIVILES, estarían con ${calibre.toUpperCase()} calibre y se moviliza en ${vehiculos.join(', ')} TODO PIKAO A XORO vengan porfavor vengan!!!!</p>
+
+                <p>**ROBO CARNES**</p>
+
+                <p>entorno Hola buenas soy Manolito y acabo de ver como ${sujetos} sujetos Vestidos con prendas ${color} llegan a la CARNICERIA terrible matón en ${vehiculos.join(', ')} TODO PIKAO A XORO, mostrando ${calibre.toUpperCase()} CALIBRE al momento de bajarse, TENDRÍA A ${rehenes} PELAO SECUESTRAO, ESTOS WEONES SE ESTA ROBANDO TODAS LAS COSAS DE LA TIENDA, PORFAVOOOOR VENGAN!!!!</p>
+
+                <p>**DESHABILITAR PACOS**</p>
+
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irian con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')} TODO PIKAO A XORO AYUDA POR FAVOOOR</p>
+                @here
+            `,
+            "robar-banco-central": `
+            <p>**ROBAR BANCO CENTRAL**</p>
+
+            <p>entorno ¡MENSAJE DE SEGURIDAD! Las cámaras del BANCO CENTRAL han captado a ${sujetos} delincuentes CON vestimenta ${color} ROBAR LA CAJA FUERTE DEL BANCO CENTRAL portan armas de ${calibre.toUpperCase()} estos tendrían ${rehenes} rehenes esposados cada uno y amordazados, los restantes estarían en una distancia prudente del banco de CON LA vestimenta ${color} igualmente, estarían ubicados por ahí y ${snipers} de esos DE AFUERA están con SNIPER. Estos llegarían en ${vehiculos.join(', ')}!!! ayudaaa</p>
+
+            <p>**PELEAR CENTRAL**</p>
+
+            <p>entorno Hola soy Dieginho Dosantos y acabo de ver a ${sujetos} sujetos Vestido con prendas ${color} llegando en ${vehiculos.join(', ')} TODO PIKAO A XORO abriendo fuego hacia dentro de un BANCO CENTRAL por lo que logro apreciar ESTÁ CON ${calibre.toUpperCase()}!!</p>
+
+            <p>**DEFENDER BANCO CENTRAL**</p>
+
+            <p>entorno Hola soy Max Verstapen y acabo de ver como ${sujetos} sujetos CON vestimenta ${color} le abre fuego a sujetos que quieren entrar de mala forma al establecimiento (BANCO CENTRAL), al parecer los sujetos portan armamento ${calibre.toUpperCase()}. ayudaaa</p>
+
+            <p>**SECUESTRO CIVIL**</p>
+
+            <p>entorno Alo policia? Acabo de ver a ${sujetos} personas CON vestimenta ${color} SECUESTRAR a CIVILES en ${vehiculos.join(', ')}. Los secuestradores portarían armamento de ${calibre.toUpperCase()} y se ven muy peligrosos, ESTARÍAN DISPUESTO A DESHABILITAR LAS RUEDAS AYUDAA POR FAVOR</p>
+
+            <p>**ABATIR CIVILES**</p>
+
+            <p>entorno Aloo carabibuenos??? soy Lionel Targaryen sabe que acabo de ver a ${sujetos} sujetos disparando a abatir a los civiles, irían CON LA vestimenta ${color} y con armas de ${calibre.toUpperCase()}, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR SON MUY PELIGROSOS</p>
+
+            <p>**DESHABILITAR Y ABATIR CARABINEROS**</p>
+
+            <p>entorno Aloo carabibuenos??? soy Lionel Targaryen sabe que acabo de ver a ${sujetos} sujetos DESHABILITAR RUEDAS a OFICIALES para luego ABATIRLOS, irían CON LA vestimenta ${color} y con armas de ${calibre.toUpperCase()}, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR</p>
+        `,
+            "robo-life-invader": `
+            <p>**ROBO LIFE INVADER**</p>
+
+            <p>entorno ALOOO POLICIA ESCUCHO COMO LAS camaras de seguridad del Life Invader captaron a ${sujetos} sujetos con VESTIMENTA ${color} enmascarados a robar el life invader, se captaron a los ${sujetos} con armamento de ${calibre.toUpperCase()} calibre y con ${rehenes} rehenes esposados, ${sujetosExterior} de los sujetos enmascarados habrían salido del establecimiento para posicionarse afuera y habrían llegado en ${vehiculos.join(', ')}.</p>
+
+            <p>**SECUESTRAR CIVILES**</p>
+            
+            <p>entorno Alo polizia?! Soy Don Pipe y Acabo de ver como ${sujetos} sujetos Vestidos con prendas ${color} con ${calibre.toUpperCase()} calibre, en ${vehiculos.join(', ')} QUIEREN SECUESTRAR a los civiles A LO MATÓN!! ESTARÍAN DISPUESTOS A PINCHAR RUEDAS SI ES NECESARIO, Ayuda por favor, salven a los Rehenes!!</p>
+
+            <p>**ABATIR CIVILES**</p>
+
+            <p>entorno ALO POLICIA SABE QUE VEO A ${sujetos} sujetos con VESTIMENTA ${color} abatiendo a civiles, estos irían armados con ${calibre.toUpperCase()} calibre y se movilizan en ${vehiculos.join(', ')} AYUDA POR FAVOR</p>
+
+            <p>**PELEAR LIFEINVADER**</p>
+
+            <p>entorno Hola soy Dieginho Dosantos y acabo de ver a ${sujetos} sujetos con VESTIMENTA ${color} llegando en ${vehiculos.join(', ')} abriendo fuego hacia dentro de un lifeinvader, por lo que logro apreciar TODOS ESTÁN CON ${calibre.toUpperCase()} calibre Y TIENEN A ${rehenes} REHENES DENTRO DE LOS AUTOS!!</p>
+
+            <p>**DEFENDER LIFE**</p>
+
+            <p>entorno Hola soy Maicol y acabo de ver como ${sujetos} sujetos CON vestimenta ${color} le abre fuego a sujetos que quieren entrar de mala forma al establecimiento LIFEINVADER, al parecer los sujetos portan armamento de ${calibre.toUpperCase()} calibre. ayudaaa</p>
+
+            <p>**DESHABILITAR CARABINEROS**</p>
+
+            <p>entorno Aloo carabibuenos??? SOY KEVIN SANHUEZA sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES, irían con VESTIMENTA ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')} POR FAVOOOR AYUDAA</p>
+
+            <p>**SAMU NEGRO**</p>
+
+            <p>ENTORNO AYUDAAAAA CARABIBUENOS ESTOY VIENDO COMO ${sujetos} WNES DE ${color} ESTÁN OCUPANDO A UN SAMU TERRIBLE DE ILEGAL, ESTOS SE MUEVEN EN ${vehiculos.join(', ')}, LOS SUJETOS ANDAN PORTANDO ARMAMENTO DE ${calibre.toUpperCase()} CALIBRE, AYUDAAAAAAAAAAAAA</p>
+        `,
+            "robar-banco-santander": `
+            <p>**ROBAR BANCO SANTANDER**</p>
+
+            <p>entorno ¡MENSAJE DE SEGURIDAD! Las cámaras del SANTANDER han captado a ${sujetos} delincuentes CON vestimenta ${color} ROBAR LA CAJA FUERTE DEL BANCO SANTANDER, estos tendrían ${rehenes} rehenes esposados cada uno y amordazados, los ${sujetosExterior} restantes estarían en una UBICACIÓN DESCONOCIDA CON LA vestimenta ${color} igualmente ${snipers} DE ELLOS PORTAN UN FRANCOTIRADOR PARA CAZAR PATOS. Estos llegarían en ${vehiculos.join(', ')}. ayudaaa</p>
+
+            <p>**PELEAR BANCO SANTANDER**</p>
+
+            <p>entorno Hola soy Juan Perez y acabo de ver a ${sujetos} sujetos vestidos con prendas ${color} llegando en ${vehiculos.join(', ')} abriendo fuego hacia dentro de un BANCO SANTANDER, estarian con ${calibre.toUpperCase()} calibre</p>
+
+            <p>**DEFENDER SANTANDER**</p>
+
+            <p>entorno Hola soy Maicol y acabo de ver como ${sujetos} sujetos CON vestimenta ${color} le abren fuego a sujetos que quieren entrar de mala forma al establecimiento (BANCO SANTANDER), al parecer los sujetos portarian diferente calibre (${sujetosMedio} MEDIO Y ${sujetosAlto} ALTO). ayudaaa</p>
+
+            <p>**SECUESTRO CIVIL**</p>
+
+            <p>entorno Alo policia? Acabo de ver a ${sujetos} personas CON vestimenta ${color} SECUESTRAR a CIVILES en ${vehiculos.join(', ')}. Los secuestradores portarían armamento de ${calibre.toUpperCase()} y se ven muy peligrosos, ESTARÍAN DISPUESTO A DESHABILITAR LAS RUEDAS AYUDAA POR FAVOR</p>
+
+            <p>**ABATIR CIVILES**</p>
+
+            <p>entorno Aloo carabibuenos??? soy Lionel Targaryen sabe que acabo de ver a ${sujetos} sujetos disparando a abatir a los civiles, irían CON LA vestimenta ${color} y con armas de ${calibre.toUpperCase()}, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR SON MUY PELIGROSOS</p>
+
+            <p>**DESHABILITAR Y ABATIR CARABINEROS**</p>
+
+            <p>entorno Aloo carabibuenos??? soy Lionel Targaryen sabe que acabo de ver a ${sujetos} sujetos DESHABILITAR RUEDAS a OFICIALES para luego ABATIRLOS, irían CON LA vestimenta ${color} y con armas de ${calibre.toUpperCase()}, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR</p>
+
+            @here
+
+            
+        `,
+            "robar-banco-santander": `
+            <p>**ROBAR BANCO SANTANDER**</p>
+            
+            <p>entorno ¡MENSAJE DE SEGURIDAD! Las cámaras del SANTANDER han captado a ${sujetos} delincuentes CON vestimenta ${color} ROBAR LA CAJA FUERTE DEL BANCO SANTANDER, estos tendrían ${rehenes} rehenes esposados cada uno y amordazados, hay ${sujetosExterior} restantes estarían en una UBICACIÓN DESCONOCIDA CON LA vestimenta ${color} igualmente, ${sujetosMedio} de los sujetos irían solo con MEDIO CALIBRE y los otros ${sujetosAlto} con ALTO CALIBRE, ${snipers} DE ELLOS PORTAN UN FRANCOTIRADOR PARA CAZAR PATOS. Estos llegarían en ${vehiculos.join(', ')}. ayudaaa</p>
+            
+            <p>**DEFENDER ESTADO**</p>
+            <p>entorno Hola soy Maicol y acabo de ver como ${sujetos} sujetos CON vestimenta ${color} le abren fuego a sujetos que quieren entrar de mala forma al establecimiento (BANCO SANTANDER), al parecer los sujetos portan armamento de MEDIO Y ALTO calibre (${sujetosMedio} MEDIO Y ${sujetosAlto} ALTO). ayudaaa</p>
+
+            <p>**SECUESTRO CIVIL**</p>
+            <p>entorno Alo policia? Acabo de ver a ${sujetos} personas CON vestimenta ${color} SECUESTRANDO a CIVILES en ${vehiculos.join(', ')}. ${sujetosMedio} de los sujetos irían solo con MEDIO CALIBRE y los otros ${sujetosAlto} con ALTO CALIBRE, ${snipers} DE ELLOS PORTAN UN FRANCOTIRADOR PARA CAZAR PATOS, ESTARÍAN DISPUESTOS A DESHABILITAR LAS RUEDAS AYUDAA POR FAVOR</p>
+
+            <p>**ABATIR CIVILES**</p>
+            <p>entorno Aloo carabibuenos??? soy Lionel Targaryen sabe que acabo de ver a ${sujetos} sujetos disparando a abatir a los civiles, irían con la vestimenta ${color}, ${sujetosMedio} de los sujetos irían solo con MEDIO CALIBRE y los otros ${sujetosAlto} con ALTO CALIBRE, UNO DE ELLOS PORTAN UN FRANCOTIRADOR PARA CAZAR PATOS, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR SON MUY PELIGROSOS</p>
+
+            <p>**DESHABILITAR Y ABATIR CARABINEROS**</p>
+            <p>entorno Aloo carabibuenos??? soy Lionel Targaryen sabe que acabo de ver a ${sujetos} sujetos DESHABILITAR RUEDAS a OFICIALES para luego ABATIRLOS, irían con la vestimenta ${color}, ${sujetosMedio} de los sujetos irían solo con MEDIO CALIBRE y los otros ${sujetosAlto} con ALTO CALIBRE, ${snipers} DE ELLOS PORTAN UN FRANCOTIRADOR PARA CAZAR PATOS, los vi moverse en ${vehiculos.join(', ')} AYUDA POR FAVOOR.</p>
+
+            <p>**SAMU NEGRO**</p>
+            <p>ENTORNO AYUDAAAAA CARABIBUENOS ESTOY VIENDO COMO ${sujetos} WNES DE ${color} ESTÁN OCUPANDO A UN SAMU TERRIBLE DE ILEGAL, ESTOS SE MUEVEN EN ${vehiculos.join(', ')} MUY BONITO, ${sujetosMedio} de los sujetos irían solo con MEDIO CALIBRE y los otros ${sujetosAlto} con ALTO CALIBRE, UNO DE ELLOS PORTAN UN FRANCOTIRADOR PARA CAZAR PATOS</p>
+        `
+
+            };
+
+
+            
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = texts[entorno];
+
+            document.getElementById('copyButton').addEventListener('click', function() {
+                const textToCopy = resultadoDiv.innerText || resultadoDiv.textContent;
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    alert('Texto copiado al portapapeles');
+                }, function(err) {
+                    alert('Error al copiar el texto: ', err);
+                });
+            });
+
+            document.getElementById('sendButton').addEventListener('click', function() {
+                const textToSend = resultadoDiv.innerText || resultadoDiv.textContent;
+                
+
+                const webhookUrl = 'https://discord.com/api/webhooks/1258277347950465117/sQrDRq8ZZnE3tx1KW-7aLwuoBXs5DqmjKKyaL5RGbVIZd650TZe_nWbuKv88Uaz1w0Cp'; 
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        content: textToSend
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Mensaje enviado a Discord');
+                    } else {
+                        alert('Error al enviar el mensaje');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al enviar el mensaje');
+                });
+            });
+            
+        });
+
+    </script>
+</body>
+</html>
