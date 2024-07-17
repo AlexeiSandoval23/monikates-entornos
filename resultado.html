@@ -24,6 +24,8 @@
             const sujetosExterior = localStorage.getItem('sujetosExterior');
             const sujetosMedio = localStorage.getItem('sujetosMedio');
             const sujetosAlto = localStorage.getItem('sujetosAlto');
+            const sujetosSacando = localStorage.getItem('sujetosSacando');
+            const sujetosEscondidos = localStorage.getItem('sujetosEscondidos');
 
             const texts = {
                 "robo-ammunation": `
@@ -104,23 +106,23 @@
                 "quimicos": `
                 <p>**ABATIR CIVILES**</p>
 
-                <p>entorno Aloo carabibuenos??? soy Amanda Kayne sabe que acabo de ver a 3 sujetos disparando a abatir a los civiles, irían con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOOR ES MUY PELIGROSOS!</p>
+                <p>entorno Aloo carabibuenos??? soy Amanda Kayne sabe que acabo de ver a ${sujetos} sujetos disparando a abatir a los civiles, irían con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOOR ES MUY PELIGROSOS!</p>
 
                 <p>**DESHABILITAR Y ABATIR CARABINEROS**</p>
 
-                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a 3 sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irían con prendas ${color}, estarían con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOOOR</p>
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver a ${sujetos} sujetos disparando para DESHABILITAR RUEDAS a OFICIALES para luego ABATIR A oficiales de la ley, irían con prendas ${color}, estarían con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOOOR</p>
 
                 <p>**ROBAR LAS PERTENENCIAS DE LOS SUJETOS EN EL PUNTO**</p>
 
-                <p>entorno Hola oficiales soy Felipe Camiroaga, al parecer 3 sujetos vestidos con prendas ${color} han logrado abatir a dichos SUJETOS y ahora revisa sus pertenencias con intenciones de robar, portan armamento de ${calibre.toUpperCase()} calibre estarían preparado para escapar/tirotearse con ${vehiculos.join(', ')}.</p>
+                <p>entorno Hola oficiales soy Felipe Camiroaga, al parecer ${sujetos} sujetos vestidos con prendas ${color} han logrado abatir a dichos SUJETOS y ahora revisa sus pertenencias con intenciones de robar, portan armamento de ${calibre.toUpperCase()} calibre estarían preparado para escapar/tirotearse con ${vehiculos.join(', ')}.</p>
 
                 <p>**RECOLECCION QUIMICOS**</p>
 
-                <p>entorno Aloo carabibuenos??? sabe que acabo de ver 2 de 3 sujetos SACANDO sustancias ilícitas, 1 ESTARÍA ESCONDIDO ESTRATEGICAMENTE. irían con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOR ME TOY PONIENDO NERVIOSOOOOO. @here</p>
+                <p>entorno Aloo carabibuenos??? sabe que acabo de ver ${sujetosSacando} de ${sujetos} sujetos SACANDO sustancias ilícitas, ${sujetosEscondidos} ESTARÍA ESCONDIDO ESTRATEGICAMENTE. irían con prendas ${color} y con armas de ${calibre.toUpperCase()} calibre, los vi moverse en ${vehiculos.join(', ')}. AYUDA POR FAVOR ME TOY PONIENDO NERVIOSOOOOO. @here</p>
 
                 <p>**ROBAR LAS PERTENENCIAS DE CARABINEROS/PDI EN EL PUNTO**</p>
 
-                <p>entorno Hola oficiales?¡ soy Amanda Kayne, al parecer 3 SUJETOS DE ${color}, han logrado abatir a OFICIALES DE LA LEY, ahora revisan sus pertenencias con intenciones de robar, portan armamento de ${calibre.toUpperCase()} calibre y estarían preparados para escapar en ${vehiculos.join(', ')}.</p>
+                <p>entorno Hola oficiales?¡ soy Amanda Kayne, al parecer ${sujetos} SUJETOS DE ${color}, han logrado abatir a OFICIALES DE LA LEY, ahora revisan sus pertenencias con intenciones de robar, portan armamento de ${calibre.toUpperCase()} calibre y estarían preparados para escapar en ${vehiculos.join(', ')}.</p>
         `,  
                 "secuestro": `
                 <p>**SECUESTRAR**</p>

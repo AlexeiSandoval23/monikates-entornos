@@ -28,7 +28,22 @@
     </form>
 
     <script>
-        function _0x58e3(){const _0x1343ba=['64dTQlbo','11035950yMqYHB','value','104ukSTeH','form-entorno','href','637791jXjETH','getElementById','addEventListener','location','35601EYZXFE','entorno','268072nKQiTP','setItem','30DzLrGs','sujetos-exterior.html','273950pdWPqu','resultado.html','robar-banco-santander','333723RapbeI','4562262JYrMpD'];_0x58e3=function(){return _0x1343ba;};return _0x58e3();}const _0x501b33=_0x15e4;function _0x15e4(_0x395812,_0xc5ac12){const _0x58e37f=_0x58e3();return _0x15e4=function(_0x15e45d,_0x18b5d1){_0x15e45d=_0x15e45d-0x1da;let _0x1fca5e=_0x58e37f[_0x15e45d];return _0x1fca5e;},_0x15e4(_0x395812,_0xc5ac12);}(function(_0x58686d,_0x4d87c5){const _0x5d5a3d=_0x15e4,_0x57c2a4=_0x58686d();while(!![]){try{const _0x540ddf=parseInt(_0x5d5a3d(0x1df))/0x1+-parseInt(_0x5d5a3d(0x1e4))/0x2*(parseInt(_0x5d5a3d(0x1eb))/0x3)+-parseInt(_0x5d5a3d(0x1e1))/0x4*(-parseInt(_0x5d5a3d(0x1dc))/0x5)+-parseInt(_0x5d5a3d(0x1da))/0x6*(-parseInt(_0x5d5a3d(0x1e7))/0x7)+parseInt(_0x5d5a3d(0x1ed))/0x8+parseInt(_0x5d5a3d(0x1e0))/0x9+-parseInt(_0x5d5a3d(0x1e2))/0xa;if(_0x540ddf===_0x4d87c5)break;else _0x57c2a4['push'](_0x57c2a4['shift']());}catch(_0x7bb5ef){_0x57c2a4['push'](_0x57c2a4['shift']());}}}(_0x58e3,0x7692c),document['getElementById'](_0x501b33(0x1e5))[_0x501b33(0x1e9)]('submit',function(_0x19e13f){const _0x1c48e3=_0x501b33;_0x19e13f['preventDefault']();const _0x10ba02=document[_0x1c48e3(0x1e8)](_0x1c48e3(0x1ec))[_0x1c48e3(0x1e3)];localStorage[_0x1c48e3(0x1ee)](_0x1c48e3(0x1ec),_0x10ba02),_0x10ba02==='robar-banco-central'?window[_0x1c48e3(0x1ea)][_0x1c48e3(0x1e6)]='snipers.html':window[_0x1c48e3(0x1ea)][_0x1c48e3(0x1e6)]='resultado.html',_0x10ba02===_0x1c48e3(0x1de)?window[_0x1c48e3(0x1ea)][_0x1c48e3(0x1e6)]=_0x1c48e3(0x1db):window['location'][_0x1c48e3(0x1e6)]=_0x1c48e3(0x1dd);}));
+        document.getElementById('form-entorno').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const entorno = document.getElementById('entorno').value;
+
+            localStorage.setItem('entorno', entorno);
+
+            if (entorno === 'robar-banco-central') {
+                window.location.href = 'snipers.html';
+            } else if (entorno === 'robar-banco-santander' || entorno === 'robar-banco-estado') {
+                window.location.href = 'sujetos-exterior.html';
+            } else if (entorno === 'quimicos') {
+                window.location.href = 'sujetos-quimicos.html';
+            } else {
+                window.location.href = 'resultado.html';
+            }
+        });
     </script>
 </body>
 </html>
